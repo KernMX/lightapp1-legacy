@@ -1,0 +1,129 @@
+/*Makes Color Picker's border and background invisible*/
+.minicolors-panel {
+  background: transparent;
+  border: transparent;
+}
+
+/*Stops Color Picker from moving around the screen on touch*/
+.minicolors{
+  touch-action: none;
+}
+
+/*Sets font/color/background/border for all UI input elements (buttons, sliders, selectors)*/
+.dusty{
+  background-color: #444;
+  border-color: #666;
+  color: #111;
+  font-weight:bold;
+  font-family: 'Lato';
+}
+
+.btn-color{
+  border-color: #666;
+}
+
+#inputBrightness{
+  background-color: #444;
+  border-color: #666;
+  cursor: pointer;
+}
+
+#inputSpeed{
+  background-color: #444;
+  border-color: #666;
+  cursor: pointer;
+}
+
+#inputPattern{
+  cursor: pointer;
+}
+
+#inputVisualization{
+  cursor: pointer;
+}
+
+/*Sets Font and color for labels*/
+.control-label{
+  font-family: 'Roboto';
+  /*color: #fff;*/
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/*Resizes font awesome icons to look appropriate with roboto font*/
+.control-label .fa{
+  font-size:18px;
+}
+
+/*Styling of labels*/
+.pow{
+  color: #ff7777;
+}
+
+.bri{
+  color: #ffff77;
+}
+
+.spe{
+  color: #77ff77;
+}
+
+.pat{
+  color: #00ffff;
+}
+
+.vis{
+  color: #7777ff;
+}
+
+.tem{
+  color: #ff77ff;
+}
+
+.col{
+  color: #ff77ff;
+}
+
+/*Sets Background and sizes particle area*/
+canvas{
+      position:fixed;
+      z-index:-1;
+      background-color: #111111;
+      background-image: url('../images/background.jpg');
+      background-size: cover;
+      background-position: 60% 60%;
+      background-repeat: no-repeat;
+}
+
+/*Sets default background color*/
+body {
+    background-color: #111;
+}
+
+/*Sets Navbar to be transparent*/
+.navbar {
+   background-color: transparent;
+   background: transparent;
+   border-color: transparent;
+}
+
+/*Sets Navbar Brand properties*/
+.navbar-inverse .navbar-brand{
+  font-family: 'Roboto';
+  color: #fff;
+  font-size:40px;
+  font-weight: 200;
+}
+
+/*Styling of header*/
+#L{
+  color: #f77;
+}
+
+#E{
+  color: #7f7;
+}
+
+#D{
+  color: #77f;
+}

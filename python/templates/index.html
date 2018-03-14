@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>LED Hub</title>
+	<meta name="viewport" charset="utf-8" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-minicolors/2.2.6/jquery.minicolors.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:Thin|Lato" />
+	<!--****************** Flask On Server ************************
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	<link href="{{ url_for('static', filename='css/overrides.css') }}" rel="stylesheet">
+	-->
+	<!--****************** Local Files ************************-->
+	<link rel="shortcut icon" href="../static/favicon.ico">
+	<link rel="stylesheet" href="../static/css/overrides.css">
+
+</head>
+
+<div  id="particles-js"></div>
+
+<header class="navbar navbar-inverse navbar-static-top" id="top" role="banner">
+	<div class="container">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="/"><span id="L">L</span><span id="E">E</span><span id="D">D</span> Hub</a>
+		</div>
+	</div>
+</header>
+
+<body>
+	<!--============================== START EXAMPLE APP =======================================================================-->
+
+	<div class="container">
+		<div id="errorAlarm"></div>
+
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label class="col-sm-2 control-label pow">Power <i class="fa fa-power-off"></i></label>
+				<div class="col-sm-8">
+					<div class="btn-group" role="group" aria-label="Power">
+						<button type="button" class="btn btn-default btn-lg dusty" id="btnPowerOn" title="On"><i class="fa fa-minus"></i></button>
+						<button type="button" class="btn btn-default btn-lg dusty" id="btnPowerOff" title="Off"><i class="fa fa-circle-o"></i></button>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputBrightness" class="col-sm-2 control-label bri">Brightness <i class="fa fa-sun-o"></i></label>
+				<div class="col-sm-8">
+					<div class="input-group input-group-lg">
+						<span class="input-group-addon dusty" id="spanBrightness">50</span>
+						<input class="form-control" id="inputBrightness" type="range" step="1" min="0" max="100" />
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputSpeed" class="col-sm-2 control-label spe">Speed <i class="fa fa-rocket"></i></label>
+				<div class="col-sm-8">
+					<div class="input-group input-group-lg">
+						<span class="input-group-addon dusty" id="spanSpeed">4</span>
+						<input class="form-control" id="inputSpeed" type="range" step="1" min="1" max="6" />
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputPattern" class="col-sm-2 control-label pat">Pattern <i class="fa fa-tasks"></i></label>
+				<div class="col-sm-8">
+					<select class="form-control dusty input-lg" id="inputPattern">
+							<option value=0 disabled selected value> -- select an option -- </option>
+							<option value=1> Flash </option>
+							<option value=2> Fade </option>
+							<option value=3> Rainbow </option>
+							<option value=4> Rainbow With Glitter </option>
+							<option value=5> Cylon </option>
+							<option value=6> Confetti </option>
+							<option value=7> Sinelon </option>
+							<option value=8> BPM </option>
+							<option value=9> Juggle </option>
+          </select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputVisualization" class="col-sm-2 control-label vis">Dance <i class="fa fa-headphones"></i></label>
+				<div class="col-sm-8">
+					<select class="form-control dusty input-lg" id="inputVisualization">
+							<option value=0 disabled selected value> -- select an option -- </option>
+							<option value=1> Energy </option>
+							<option value=2> Spectrum </option>
+							<option value=3> Scroll </option>
+          </select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputColor" class="col-sm-2 control-label col">Color <i class="fa fa-paint-brush"></i></label>
+				<div class="col-sm-8">
+					<!--<input id="inputColor" type="hidden" class="input-lg">-->
+					<input id="inputColor" type="text" class="form-control dusty input-lg">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-8 col-sm-offset-2">
+					<div class="btn-group btn-group-justified" role="group">
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #FF0000;" title="Red">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #FF8000;" title="Orange">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #FFFF00;" title="Yellow">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #80FF00;" title="Chartreuse">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #00FF00;" title="Green">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #00FF80;" title="Spring Green">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #00FFFF;" title="Cyan">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #0080FF;" title="Azure">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #0000FF;" title="Blue">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #8000FF;" title="Violet">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #FF00FF;" title="Magenta">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #FF0080;" title="Rose">&nbsp;</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-8 col-sm-offset-2">
+					<div class="btn-group btn-group-justified" role="group">
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #FF8100;" title="Candle Flame">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #FF9B3C;" title="Standard Incandescent Lamp">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #FFA657;" title="Soft White LED">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #FFB16D;" title="Warm White LED">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #FFD1AC;" title="Moonlight">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #FFE4CD;" title="CFL Lamp">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #FFFEFA;" title="Daylight">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #CDDCFF;" title="LCD Screen">&nbsp;</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-default btn-color btn-lg" style="background: #B5CDFF;" title="Clear Blue Sky">&nbsp;</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</form>
+	</div>
+	<!--Javascript imports-->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-minicolors/2.2.6/jquery.minicolors.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+	<!--****************** Flask ************************
+	<script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+	-->
+	<!--****************** Local ************************-->
+	<script src="../static/js/scripts.js"></script>
+
+</body>
+
+</html>
